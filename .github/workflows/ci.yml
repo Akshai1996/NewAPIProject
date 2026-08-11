@@ -1,8 +1,5 @@
 name: CI_Main
 on:
-  push: 
-    branches:
-    - feature/ruff-failure
   workflow_dispatch: 
 
 jobs:
