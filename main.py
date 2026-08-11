@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 #from databases import SessionLocal, engine
 #from models import Base, DBItem
 from schemas import Item, ItemCreate, ItemUpdate
-from models import Base
-from databases import SessionLocal
+from models import Base, DBItem
+from databases import SessionLocal, engine
 
 app = FastAPI()
 
