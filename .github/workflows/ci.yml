@@ -60,6 +60,6 @@ jobs:
              script: | 
                   cd /opt/fastapi
                   unzip -o ./release.zip
-                  systemctl retstart fastapi.service
+                  systemctl restart fastapi.service
                   sudo systemctl status fastapi --no-pager
           
