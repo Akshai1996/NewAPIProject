@@ -46,7 +46,7 @@ jobs:
       -  name: Copy file to remote server 
          uses: appleboy/scp-action@v1 
          with: 
-               host: ${{ secrets.HOST }} 
+               host: ${{ secrets.EC2_HOST }} 
                username: ${{ secrets.USERNAME }} 
                key: ${{ secrets.PRIVATE_KEY }} 
                source: "./release.zip" 
@@ -54,7 +54,7 @@ jobs:
       - name: restart Application 
         uses: appleboy/ssh-action@v1 
         with: 
-             host: ${{ secrets.HOST }} 
+             host: ${{ secrets.EC2_HOST }} 
              username: ${{ secrets.USERNAME }} 
              key: ${{ secrets.PRIVATE_KEY }} 
              script: | 
