@@ -34,4 +34,32 @@ jobs:
         with:
           name: my-artifact
           path: ./release.zip
+  deploy: 
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v7 
+        with:
+          name: my-artifact
+      - name: List artifact is showing in files 
+        run: ls -R   
+      -  name: Copy file to remote server 
+         uses: appleboy/scp-action@v1 
+         with: 
+               host: ${{ secrets.HOST }} 
+               username: ${{ secrets.USERNAME }} 
+               key: ${{ secrets.PRIVATE_KEY }} 
+               source: "./release.zip" 
+               target: "/opt/fastapi"  
+      - name: restart Application 
+        uses: appleboy/ssh-action@v1 
+        with: 
+             host: ${{ secrets.HOST }} 
+             username: ${{ secrets.USERNAME }} 
+             key: ${{ secrets.PRIVATE_KEY }} 
+             script: | 
+                  cd /opt/fastapi
+                  unzip -o ./release.zip
+                  systemctl retstart fastapi.service
+                  sudo systemctl status fastapi --no-pager
           
