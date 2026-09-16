@@ -71,8 +71,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-crud:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-crud:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/fastapi:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/fastapi:${{ github.sha }}
 
 
   # --------------------------------
@@ -103,7 +103,7 @@ jobs:
 
             # Pull latest image
             docker pull \
-            ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-crud:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/fastapi:latest
 
 
             # Stop existing container if running
@@ -119,7 +119,7 @@ jobs:
               --name fastapi \
               --restart unless-stopped \
               -p 8000:8000 \
-              ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-crud:latest
+              ${{ secrets.DOCKERHUB_USERNAME }}/fastapi:latest
 
 
             # Show running container
